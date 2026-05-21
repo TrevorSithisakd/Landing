@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Trevor Sithisakd</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a2540;
+    --ink-soft: #4a5876;
+    --ink-faint: #8390a8;
+    --bg: #ffffff;
+    --line: #e8eaf0;
+    --line-soft: #f1f2f6;
+    --accent: #2a3f6e;
+    --serif: 'Newsreader', Georgia, serif;
+    --sans: 'Inter', -apple-system, sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--sans);
+    color: var(--ink);
+    background: var(--bg);
+    line-height: 1.55;
+    font-size: 15px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 64px 32px 96px;
+  }
+
+  /* ---------- Header / Hero ---------- */
+  .hero { margin-bottom: 64px; }
+
+  .avatar {
+    width: 88px;
+    height: 88px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #2a3f6e 0%, #5a7ab3 100%);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-family: var(--serif);
+    font-size: 32px;
+    font-weight: 500;
+    letter-spacing: -0.5px;
+    box-shadow: 0 1px 3px rgba(26, 37, 64, 0.08);
+  }
+
+  .name {
+    font-family: var(--serif);
+    font-size: 38px;
+    font-weight: 500;
+    color: var(--ink);
+    letter-spacing: -0.5px;
+    margin-bottom: 10px;
+    line-height: 1.1;
+  }
+
+  .tagline {
+    font-size: 14px;
+    color: var(--ink-soft);
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .tagline-emoji { font-size: 15px; }
+
+  .bio {
+    font-size: 14px;
+    color: var(--ink-soft);
+    line-height: 1.65;
+    max-width: 520px;
+    margin-bottom: 22px;
+  }
+
+  .social {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+  }
+
+  .social a {
+    color: var(--ink-soft);
+    transition: color 0.15s;
+    display: inline-flex;
+  }
+
+  .social a:hover { color: var(--ink); }
+
+  .social svg { width: 18px; height: 18px; }
+
+  /* ---------- Nav ---------- */
+  .nav {
+    position: absolute;
+    top: 64px;
+    right: 32px;
+    display: flex;
+    gap: 28px;
+    font-size: 14px;
+  }
+
+  .nav a {
+    color: var(--ink-soft);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+
+  .nav a:hover { color: var(--ink); }
+
+  /* ---------- Section ---------- */
+  .section {
+    margin-top: 56px;
+    padding-top: 36px;
+    border-top: 1px solid var(--line);
+  }
+
+  .section-title {
+    font-family: var(--serif);
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--accent);
+    margin-bottom: 6px;
+    letter-spacing: -0.3px;
+  }
+
+  .section-sub {
+    font-size: 12px;
+    color: var(--ink-faint);
+    margin-bottom: 24px;
+  }
+
+  /* ---------- Project cards ---------- */
+  .card {
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 20px 22px;
+    margin-bottom: 14px;
+    display: flex;
+    gap: 18px;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+
+  .card:hover {
+    border-color: #d4d8e3;
+    transform: translateY(-1px);
+  }
+
+  .card-icon {
+    width: 56px;
+    height: 56px;
+    flex-shrink: 0;
+    background: var(--line-soft);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+  }
+
+  .card-body { flex: 1; min-width: 0; }
+
+  .card-title {
+    font-family: var(--serif);
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+
+  .card-desc {
+    font-size: 13.5px;
+    color: var(--ink-soft);
+    line-height: 1.55;
+    margin-bottom: 8px;
+  }
+
+  .card-meta {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 13px;
+    color: var(--ink-faint);
+    margin-bottom: 10px;
+  }
+
+  .card-tags {
+    font-size: 12.5px;
+    color: var(--ink-faint);
+    margin-bottom: 12px;
+  }
+
+  .card-links {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .pill {
+    font-size: 12px;
+    padding: 4px 10px;
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    color: var(--ink-soft);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: white;
+    transition: background 0.15s, border-color 0.15s;
+    cursor: pointer;
+  }
+
+  .pill:hover {
+    background: var(--line-soft);
+    border-color: #d4d8e3;
+  }
+
+  .pill svg { width: 11px; height: 11px; }
+
+  /* ---------- Tinkering grid ---------- */
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+
+  .tinker-card {
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 18px 20px;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+
+  .tinker-card:hover {
+    border-color: #d4d8e3;
+    transform: translateY(-1px);
+  }
+
+  .tinker-title {
+    font-family: var(--serif);
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .tinker-emoji { font-size: 16px; }
+
+  .tinker-desc {
+    font-size: 13px;
+    color: var(--ink-soft);
+    line-height: 1.5;
+    margin-bottom: 12px;
+  }
+
+  /* ---------- Writing list ---------- */
+  .writing-item {
+    padding: 18px 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .writing-item:last-child { border-bottom: none; }
+
+  .writing-title {
+    font-family: var(--serif);
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 6px;
+  }
+
+  .writing-desc {
+    font-size: 13.5px;
+    color: var(--ink-soft);
+    margin-bottom: 6px;
+    line-height: 1.55;
+  }
+
+  .writing-date {
+    font-size: 12px;
+    color: var(--ink-faint);
+  }
+
+  /* ---------- Center button ---------- */
+  .center-btn {
+    text-align: center;
+    margin-top: 24px;
+  }
+
+  .center-btn .pill {
+    padding: 8px 18px;
+    font-size: 13px;
+  }
+
+  /* ---------- Mobile ---------- */
+  @media (max-width: 640px) {
+    .container { padding: 32px 20px 64px; }
+    .nav { position: static; justify-content: flex-end; margin-bottom: 24px; }
+    .name { font-size: 30px; }
+    .grid-2 { grid-template-columns: 1fr; }
+    .card { flex-direction: column; gap: 14px; }
+    .card-icon { width: 48px; height: 48px; font-size: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="#projects">Projects</a>
+  <a href="#tinkering">Tinkering</a>
+  <a href="#writing">Writing</a>
+  <a href="#contact">Contact</a>
+</nav>
+
+<div class="container">
+
+  <!-- ======= HERO ======= -->
+  <header class="hero">
+    <div class="avatar">TS</div>
+    <h1 class="name">Trevor Sithisakd</h1>
+    <div class="tagline">
+      <span>ML Engineer / Data Scientist</span>
+    </div>
+    <p class="bio">
+      I'm a recent UNSW Data Science graduate based in Sydney, focused on machine learning, deep learning, and data anlysis. Currently building towards research grade ML work.
+    </p>
+    <div class="social">
+      <a href="https://github.com/Trevor-Sithisakd" aria-label="GitHub" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.56v-2c-3.2.7-3.87-1.36-3.87-1.36-.52-1.33-1.27-1.69-1.27-1.69-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.76 2.68 1.25 3.34.96.1-.74.4-1.25.72-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.28 1.18-3.08-.12-.29-.51-1.46.11-3.04 0 0 .97-.31 3.18 1.18a11.06 11.06 0 0 1 5.78 0c2.21-1.49 3.18-1.18 3.18-1.18.63 1.58.23 2.75.11 3.04.74.8 1.18 1.82 1.18 3.08 0 4.42-2.69 5.39-5.25 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.79.56C20.21 21.38 23.5 17.08 23.5 12c0-6.35-5.15-11.5-11.5-11.5z"/></svg>
+      </a>
+      <a href="mailto:sithisakdt@gmail.com" aria-label="Email">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
+      </a>
+      <a href="https://www.linkedin.com/in/trevor-sithisakd-174469303" aria-label="LinkedIn" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.61 0 4.28 2.38 4.28 5.47v6.27zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg>
+      </a>
+    </div>
+  </header>
+
+  <!-- ======= PROJECTS ======= -->
+  <section class="section" id="projects">
+    <h2 class="section-title">Projects</h2>
+    <p class="section-sub">Selected work  production pipelines, research re-implementations, and capstones.</p>
+
+    <div class="card">
+      <div class="card-icon">⚡</div>
+      <div class="card-body">
+        <div class="card-title">Transformer from Scratch</div>
+        <div class="card-desc">Re-implementation of "Attention Is All You Need" in PyTorch, built from the ground up to internalise the architecture.</div>
+        <div class="card-meta">PyTorch · Deep Learning</div>
+        <div class="card-links">
+          <a class="pill" href="https://github.com/Trevor-Sithisakd/neetcode-gpt"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.56v-2c-3.2.7-3.87-1.36-3.87-1.36-.52-1.33-1.27-1.69-1.27-1.69-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.76 2.68 1.25 3.34.96.1-.74.4-1.25.72-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.28 1.18-3.08-.12-.29-.51-1.46.11-3.04 0 0 .97-.31 3.18 1.18a11.06 11.06 0 0 1 5.78 0c2.21-1.49 3.18-1.18 3.18-1.18.63 1.58.23 2.75.11 3.04.74.8 1.18 1.82 1.18 3.08 0 4.42-2.69 5.39-5.25 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.79.56C20.21 21.38 23.5 17.08 23.5 12c0-6.35-5.15-11.5-11.5-11.5z"/></svg> GitHub</a>
+        </div>
+      </div>
+    </div>
+
+    
+
+    <div class="card">
+      <div class="card-icon">📈</div>
+      <div class="card-body">
+        <div class="card-title">Financial Time-Series Forecasting</div>
+        <div class="card-desc">PyTorch model for forecasting on financial time-series data, built from scratch as a foundation for sequential-decision and quant-style ML problems.</div>
+        <div class="card-meta">PyTorch · Time-Series</div>
+        <div class="card-links">
+          <a class="pill" href="https://github.com/Trevor-Sithisakd/Financial-Time-Series-Forecasting-Model"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.56v-2c-3.2.7-3.87-1.36-3.87-1.36-.52-1.33-1.27-1.69-1.27-1.69-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.76 2.68 1.25 3.34.96.1-.74.4-1.25.72-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.28 1.18-3.08-.12-.29-.51-1.46.11-3.04 0 0 .97-.31 3.18 1.18a11.06 11.06 0 0 1 5.78 0c2.21-1.49 3.18-1.18 3.18-1.18.63 1.58.23 2.75.11 3.04.74.8 1.18 1.82 1.18 3.08 0 4.42-2.69 5.39-5.25 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.79.56C20.21 21.38 23.5 17.08 23.5 12c0-6.35-5.15-11.5-11.5-11.5z"/></svg> GitHub</a>
+        </div>
+      </div>
+    </div>
+
+    
+
+    <div class="card">
+      <div class="card-icon">🔍</div>
+      <div class="card-body">
+        <div class="card-title">RAG Document Intelligence</div>
+        <div class="card-desc">End-to-end retrieval-augmented generation pipeline — ingestion, chunking, vector embeddings, FastAPI backend. Benchmarks OpenAI vs. OpenRouter for retrieval quality and latency.</div>
+        <div class="card-meta">FastAPI · Streamlit · LLM</div>
+        <div class="card-links">
+          <a class="pill" href="https://github.com/Trevor-Sithisakd/Document-Q-A-Assistant-RAG-system-"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.56v-2c-3.2.7-3.87-1.36-3.87-1.36-.52-1.33-1.27-1.69-1.27-1.69-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.76 2.68 1.25 3.34.96.1-.74.4-1.25.72-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.28 1.18-3.08-.12-.29-.51-1.46.11-3.04 0 0 .97-.31 3.18 1.18a11.06 11.06 0 0 1 5.78 0c2.21-1.49 3.18-1.18 3.18-1.18.63 1.58.23 2.75.11 3.04.74.8 1.18 1.82 1.18 3.08 0 4.42-2.69 5.39-5.25 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.79.56C20.21 21.38 23.5 17.08 23.5 12c0-6.35-5.15-11.5-11.5-11.5z"/></svg> GitHub</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-icon">🎯</div>
+      <div class="card-body">
+        <div class="card-title">Recapit.ai — Multi-Platform AI Summariser</div>
+        <div class="card-desc">UniHack 2024. Sole AI/ML engineer in a 4-person team. Full LLM pipeline ingesting Discord, Instagram, and WhatsApp, deployed on AWS in 48 hours.</div>
+        <div class="card-meta">UniHack 2024 · AWS · NVIDIA Nemotron</div>
+        <div class="card-links">
+          <a class="pill" href="#"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.56v-2c-3.2.7-3.87-1.36-3.87-1.36-.52-1.33-1.27-1.69-1.27-1.69-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.76 2.68 1.25 3.34.96.1-.74.4-1.25.72-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.28 1.18-3.08-.12-.29-.51-1.46.11-3.04 0 0 .97-.31 3.18 1.18a11.06 11.06 0 0 1 5.78 0c2.21-1.49 3.18-1.18 3.18-1.18.63 1.58.23 2.75.11 3.04.74.8 1.18 1.82 1.18 3.08 0 4.42-2.69 5.39-5.25 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.79.56C20.21 21.38 23.5 17.08 23.5 12c0-6.35-5.15-11.5-11.5-11.5z"/></svg> GitHub</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======= TINKERING ======= -->
+  <section class="section" id="tinkering">
+    <h2 class="section-title">Tinkering</h2>
+    <p class="section-sub">Smaller experiments and tools I've built for fun and curiosity.</p>
+
+    <div class="grid-2">
+      <div class="tinker-card">
+        <div class="tinker-title"><span class="tinker-emoji">💬</span> Do They Like Me?</div>
+        <div class="tinker-desc">Sentiment analysis benchmarking BERT vs. classical ML on user-generated text — rewritten with a clean production architecture.</div>
+        <div class="card-links">
+          <a class="pill" href="https://github.com/Trevor-Sithisakd/NLP-Sentiment-Analysis"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.56v-2c-3.2.7-3.87-1.36-3.87-1.36-.52-1.33-1.27-1.69-1.27-1.69-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.76 2.68 1.25 3.34.96.1-.74.4-1.25.72-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.28 1.18-3.08-.12-.29-.51-1.46.11-3.04 0 0 .97-.31 3.18 1.18a11.06 11.06 0 0 1 5.78 0c2.21-1.49 3.18-1.18 3.18-1.18.63 1.58.23 2.75.11 3.04.74.8 1.18 1.82 1.18 3.08 0 4.42-2.69 5.39-5.25 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.79.56C20.21 21.38 23.5 17.08 23.5 12c0-6.35-5.15-11.5-11.5-11.5z"/></svg> GitHub</a>
+        </div>
+      </div>
+
+      <div class="tinker-card">
+        <div class="tinker-title"><span class="tinker-emoji">🖼️</span> SIFT Image Stitching</div>
+        <div class="tinker-desc">SIFT keypoint matching and image stitching in OpenCV — feature detection through geometric transformation. COMP9517 Distinction.</div>
+        <div class="card-links">
+          <a class="pill" href="#"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.56v-2c-3.2.7-3.87-1.36-3.87-1.36-.52-1.33-1.27-1.69-1.27-1.69-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.76 2.68 1.25 3.34.96.1-.74.4-1.25.72-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.28 1.18-3.08-.12-.29-.51-1.46.11-3.04 0 0 .97-.31 3.18 1.18a11.06 11.06 0 0 1 5.78 0c2.21-1.49 3.18-1.18 3.18-1.18.63 1.58.23 2.75.11 3.04.74.8 1.18 1.82 1.18 3.08 0 4.42-2.69 5.39-5.25 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.79.56C20.21 21.38 23.5 17.08 23.5 12c0-6.35-5.15-11.5-11.5-11.5z"/></svg> GitHub</a>
+        </div>
+      </div>
+
+      <div class="tinker-card">
+        <div class="tinker-title"><span class="tinker-emoji">🛠️</span> Modular ML Pipeline</div>
+        <div class="tinker-desc">YAML-driven, pytest-tested ML pipeline template. Reproducible and config-first — designed for collaborative research codebases.</div>
+        <div class="card-links">
+          <a class="pill" href="https://github.com/Trevor-Sithisakd/ML-Pipeline"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.56v-2c-3.2.7-3.87-1.36-3.87-1.36-.52-1.33-1.27-1.69-1.27-1.69-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.76 2.68 1.25 3.34.96.1-.74.4-1.25.72-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.28 1.18-3.08-.12-.29-.51-1.46.11-3.04 0 0 .97-.31 3.18 1.18a11.06 11.06 0 0 1 5.78 0c2.21-1.49 3.18-1.18 3.18-1.18.63 1.58.23 2.75.11 3.04.74.8 1.18 1.82 1.18 3.08 0 4.42-2.69 5.39-5.25 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.79.56C20.21 21.38 23.5 17.08 23.5 12c0-6.35-5.15-11.5-11.5-11.5z"/></svg> GitHub</a>
+        </div>
+      </div>
+
+      <div class="tinker-card">
+        <div class="tinker-title"><span class="tinker-emoji">💬</span> Data Cleaning Utils</div>
+        <div class="tinker-desc">Collection of utility files to help speed up the data cleaning process</div>
+        <div class="card-links">
+          <a class="pill" href="https://github.com/Trevor-Sithisakd/Data-cleaning-utils"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.56v-2c-3.2.7-3.87-1.36-3.87-1.36-.52-1.33-1.27-1.69-1.27-1.69-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.76 2.68 1.25 3.34.96.1-.74.4-1.25.72-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.28 1.18-3.08-.12-.29-.51-1.46.11-3.04 0 0 .97-.31 3.18 1.18a11.06 11.06 0 0 1 5.78 0c2.21-1.49 3.18-1.18 3.18-1.18.63 1.58.23 2.75.11 3.04.74.8 1.18 1.82 1.18 3.08 0 4.42-2.69 5.39-5.25 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.79.56C20.21 21.38 23.5 17.08 23.5 12c0-6.35-5.15-11.5-11.5-11.5z"/></svg> GitHub</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ======= WRITING ======= -->
+  <section class="section" id="writing">
+    <h2 class="section-title">Writing</h2>
+    <p class="section-sub">Notes on what I'm learning — coming soon.</p>
+
+    <div class="writing-item">
+      <div class="writing-title">Reading Jaynes: Probability as Extended Logic</div>
+      <div class="writing-desc">Notes on the first few chapters of <em>Probability Theory: The Logic of Science</em>  why the Cox axioms matter, and what "Bayesian" actually means.</div>
+      <div class="writing-date">Coming soon</div>
+    </div>
+
+    <div class="writing-item">
+      <div class="writing-title">Re-implementing Attention from Scratch</div>
+      <div class="writing-desc">What I learned rebuilding the transformer in PyTorch  the parts you only notice when you write them yourself.</div>
+      <div class="writing-date">Coming soon</div>
+    </div>
+
+    <div class="writing-item">
+      <div class="writing-title">Sutton &amp; Barto, One Chapter at a Time</div>
+      <div class="writing-desc">A working log of my reinforcement learning study  bandits, MDPs, and the framings that finally clicked.</div>
+      <div class="writing-date">Coming soon</div>
+    </div>
+  </section>
+
+  <!-- ======= CONTACT ======= -->
+  <section class="section" id="contact">
+    <h2 class="section-title">Contact</h2>
+    <p class="section-sub">Open to graduate ML / research opportunities and collaborations.</p>
+    <p style="font-size: 14px; color: var(--ink-soft); line-height: 1.7;">
+      Email — <a href="mailto:sithisakdt@gmail.com" style="color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--line);">sithisakdt@gmail.com</a><br>
+      GitHub — <a href="https://github.com/Trevor-Sithisakd" style="color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--line);">github.com/Trevor-Sithisakd</a><br>
+      Location — Sydney, NSW
+    </p>
+  </section>
+
+</div>
+
+</body>
+</html>
